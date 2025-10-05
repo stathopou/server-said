@@ -10,9 +10,7 @@ export interface RabbitMQConfig {
 
 export interface KafkaConfig {
     enabled: boolean;
-    host: string;
+    broker: string;
     port: number;
-    username: string;
-    password: string;
-
+    groupId: string;
 }

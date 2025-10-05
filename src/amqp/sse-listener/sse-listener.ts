@@ -8,7 +8,7 @@ import {IncomingMessage} from "../../model/incoming-message/incoming-message";
 export class SseListener {
     private readonly logger = new Logger(SseListener.name);
 
-    constructor(private readonly router: MessageRouterService) {}
+    constructor(private readonly routerService: MessageRouterService) {}
 
    @EventPattern(undefined, Transport.RMQ)
     handleMessage(@Payload() message: IncomingMessage, @Ctx() context : RmqContext) {
@@ -16,6 +16,6 @@ export class SseListener {
 
         this.logger.log(`Received message from RabbitMQ: ${JSON.stringify(m)}`);
 
-        this.router.routeMessage(m);
+        this.routerService.routeMessage(m);
     }
 }

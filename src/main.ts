@@ -43,11 +43,11 @@ async function bootstrap() {
         transport: Transport.KAFKA,
         options: {
             client: {
-                brokers: ['127.0.0.1:9092'],
-                clientId: 'sse'
+                brokers: [`${kafkaConfig.broker}:${kafkaConfig.port}`],
+                clientId: `${process.env.HOSTNAME}`
             },
             consumer: {
-                groupId: 'sse-consumer',
+                groupId: `${kafkaConfig.groupId}`,
             },
             subscribe: {
                 fromBeginning: true,
